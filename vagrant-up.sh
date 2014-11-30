@@ -1,8 +1,10 @@
 #!/bin/bash
+
 portlist=($(ls ports))
 PORT=${portlist[0]}
 FOLDER="vm-$1"
-if [ ! -d $FOLDER ]; then
+
+if [ ! -d $FOLDER && ${#errors[@]} -ge 0]; then
     mkdir $FOLDER
     rm ports/$PORT 
     cd $FOLDER
