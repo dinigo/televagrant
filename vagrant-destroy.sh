@@ -4,9 +4,7 @@ if [ -d $FOLDER ]; then
     cd $FOLDER
     PORT=`cat port`
     touch ../ports/$PORT
-    PARAMS="" vagrant destroy <<EOF
-y
-EOF
+    PARAMS="" vagrant destroy --force
     cd ..
     rm -rf $FOLDER
 fi
