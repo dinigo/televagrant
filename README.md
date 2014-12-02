@@ -1,6 +1,7 @@
+
 Purpose
 =======
-The goal of this set of scripts is to provide a simple interface to create and destroy small virtual machines through telegram. It's users choice wich box to use.
+The goal of this set of scripts is to provide a simple interface to create and destroy small virtual machines through telegram. It's admins choice wich box to use. Only one vm per telegram user.
 
 Installation
 ============
@@ -9,6 +10,14 @@ Installation
 2. Once you have a functional telegram bot move all files under `plugins/` folder to `telegram-bot/plugins/` folder
 3. Create ports: `./create_ports 2200 2209" will create 10 ports to be used for the further created machines
 4. Run the telegram-bot
+
+Command list
+============
+```
+!cvm [user] [pass] -> Create a vm with this user and pass
+!dvm -> remove telegram-user vm
+!ivm -> print available and used vm
+```
 
 Considerations
 ==============
