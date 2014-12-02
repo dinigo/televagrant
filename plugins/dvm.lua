@@ -1,0 +1,1 @@
+/home/demil133/telegram-bot/plugins/dvm.lua
