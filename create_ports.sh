@@ -1,6 +1,10 @@
 #!/bin/bash
-mkdir ports && cd ports
-for i in {2200..2299}
+FIRST=$1
+LAST=$2
+PORTS_DIR="ports"
+
+mkdir $PORTS_DIR && cd $PORTS_DI$PORTS_DIR
+for (( i=$FIRST; i<$LAST; i++ ))
 do
     touch $i
 done
