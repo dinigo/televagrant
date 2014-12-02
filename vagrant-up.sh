@@ -18,7 +18,7 @@ then
 	echo $PORT > port
 	ln ../Vagrantfile ../bootstrap.sh .
 	screen -dm PARAMS="$PORT,$USER,$PASS" vagrant up > /dev/null
-	echo "VM available in a minute with:\nssh -p $PORT ${USER}@${DOMAIN}\nused: "
+	echo "$(./vagrant-info.sh) - VM available in a minute with: ssh -p $PORT ${USER}@${DOMAIN}"
     else
 	echo "No free slots, try later"
     fi
