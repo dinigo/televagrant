@@ -1,14 +1,27 @@
 #!/bin/bash
 
-portlist=($(ls ports))
-PORT=${portlist[0]}
+UUID=$1
+USER=$2
+PASS=$3
+DOMAIN="proliant.noip.me"
+PORTLIST=($(ls ports))
 FOLDER="vm-$1"
 
-if [ ! -d $FOLDER && ${#errors[@]} -ge 0]; then
-    mkdir $FOLDER
-    rm ports/$PORT 
-    cd $FOLDER
-    echo $PORT > port
-    ln ../Vagrantfile ../bootstrap.sh .
-    PARAMS="$PORT,$1,$2" vagrant up
+if [ ! -d $FOLDER ]
+then
+    if [ ${#PORTLIST[@]} -ge 0 ]
+    then
+	PORT=${PORTLIST[0]}
+	mkdir $FOLDER
+	rm ports/$PORT
+	cd $FOLDER
+	echo $PORT > port
+	ln ../Vagrantfile ../bootstrap.sh .
+	screen -dm PARAMS="$PORT,$USER,$PASS" vagrant up > /dev/null
+	echo "VM available in a minute with:\nssh -p $PORT ${USER}@${DOMAIN}\nused: "
+    else
+	echo "No free slots, try later"
+    fi
+else
+    echo "VM already running. Can be destroyed with !dvm"
 fi
