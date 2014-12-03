@@ -1,23 +1,28 @@
 #!/bin/bash
 
-portlist=($(ls ports))
+UUID=$1
+USER=$2
+PASS=$3
+DOMAIN="proliant.noip.me"
+PORTLIST=($(ls ports))
 FOLDER="vm-$1"
-
+info=$(./vagrant-info.sh) 
 if [ ! -d $FOLDER ]
 then
-    if [ ${#portlist[@]} -ge 0 ]
+    if [ ${#PORTLIST[@]} -ge 0 ]
     then
-	PORT=${portlist[0]}
+	PORT=${PORTLIST[0]}
 	mkdir $FOLDER
-	rm ports/$PORT 
+	rm ports/$PORT
 	cd $FOLDER
 	echo $PORT > port
 	ln ../Vagrantfile ../bootstrap.sh .
-	PARAMS="$PORT,$2,$3" vagrant up
-	echo "ssh ${1}@proliant.noip.me -p $PORT"
+        PARAMS="$PORT,$USER,$PASS" vagrant up
+	cd ..
+	echo "$info - VM available in a minute with: ssh -p $PORT ${USER}@${DOMAIN}"
     else
-	echo "No free slots, try later"
+	echo "No free slots, try later: $info"
     fi
 else
-    echo "VM already running. Can be destroyed with !dvm"
+    echo "VM already running. Can be destroyed with !dvm: $info"
 fi
