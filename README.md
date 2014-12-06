@@ -1,7 +1,7 @@
 
 Purpose
 =======
-The goal of this set of scripts is to provide a simple interface to create and destroy small virtual machines through telegram. It's admins choice wich box to use. Only one vm per telegram user.
+The goal of this set of scripts is to provide a simple interface to create and destroy small virtual machines through telegram. It's admins choice which box to use. Only one vm per telegram user.
 
 Installation
 ============
